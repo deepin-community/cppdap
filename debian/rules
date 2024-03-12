@@ -1,4 +1,18 @@
 #!/usr/bin/make -f
 
+include /usr/share/dpkg/architecture.mk
+
+BUILD_TESTS := $(if $(filter nocheck,$(DEB_BUILD_OPTIONS)),OFF,ON)
+
 %:
-	dh $@
+	dh $@ --buildsystem=cmake
+
+override_dh_auto_configure:
+	dh_auto_configure --buildsystem=cmake -- \
+		-DCPPDAP_BUILD_TESTS=$(BUILD_TESTS) \
+		-DCPPDAP_USE_EXTERNAL_JSONCPP_PACKAGE=ON \
+		-DCPPDAP_GOOGLETEST_DIR=/usr/src/googletest
+
+override_dh_auto_test:
+	./obj-$(DEB_HOST_GNU_TYPE)/cppdap-unittests --gtest_filter=-Network.*
+

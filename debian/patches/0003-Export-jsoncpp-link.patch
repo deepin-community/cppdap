@@ -1,0 +1,27 @@
+From: =?utf-8?q?Timo_R=C3=B6hling?= <roehling@debian.org>
+Date: Sun, 2 Jul 2023 23:00:01 +0200
+Subject: Export jsoncpp link
+
+---
+ cmake/Config.cmake.in | 6 +-----
+ 1 file changed, 1 insertion(+), 5 deletions(-)
+
+diff --git a/cmake/Config.cmake.in b/cmake/Config.cmake.in
+index 384aa3f..6d6ee37 100644
+--- a/cmake/Config.cmake.in
++++ b/cmake/Config.cmake.in
+@@ -14,12 +14,8 @@
+ 
+ @PACKAGE_INIT@
+ include(CMakeFindDependencyMacro)
++find_dependency(jsoncpp)
+ 
+ include("${CMAKE_CURRENT_LIST_DIR}/@CPPDAP_TARGETS_EXPORT_NAME@.cmake")
+ check_required_components("@CPPDAP_TARGET_NAME@")
+ 
+-if ( @CPPDAP_USE_EXTERNAL_NLOHMANN_JSON_PACKAGE@ )
+-    find_dependency(nlohmann_json CONFIG)
+-elseif( @CPPDAP_USE_EXTERNAL_RAPIDJSON_PACKAGE@ )
+-    find_dependency(RapidJSON CONFIG)
+-endif()
+\ No newline at end of file

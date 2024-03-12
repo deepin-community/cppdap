@@ -1,0 +1,8 @@
+Tests: testsuite
+Depends:
+ @,
+ cmake,
+ g++ | c++-compiler,
+ googletest,
+ libjsoncpp-dev,
+

@@ -1,0 +1,22 @@
+From: =?utf-8?q?Timo_R=C3=B6hling?= <roehling@debian.org>
+Date: Sun, 2 Jul 2023 21:21:27 +0200
+Subject: Do not force old CXX standard
+
+Forwarded: not-needed
+---
+ CMakeLists.txt | 2 --
+ 1 file changed, 2 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 717f02e..fb31fd7 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -16,8 +16,6 @@ cmake_minimum_required(VERSION 3.13)
+ 
+ project(cppdap VERSION 1.59.0 LANGUAGES CXX C)
+ 
+-set (CMAKE_CXX_STANDARD 11)
+-
+ include(GNUInstallDirs)
+ 
+ ###########################################################
