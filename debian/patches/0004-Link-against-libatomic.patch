@@ -1,0 +1,21 @@
+From: =?utf-8?q?Timo_R=C3=B6hling?= <roehling@debian.org>
+Date: Mon, 10 Jul 2023 20:19:14 +0200
+Subject: Link against libatomic
+
+---
+ CMakeLists.txt | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index 2e22cf9..babe40f 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -218,6 +218,8 @@ set_target_properties(cppdap PROPERTIES POSITION_INDEPENDENT_CODE 1)
+ 
+ cppdap_set_target_options(cppdap)
+ 
++target_link_libraries(cppdap PRIVATE atomic)
++
+ set(CPPDAP_TARGET_NAME               ${PROJECT_NAME})
+ set(CPPDAP_CONFIG_INSTALL_DIR        "${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME}" CACHE INTERNAL "")
+ set(CPPDAP_INCLUDE_INSTALL_DIR       "${CMAKE_INSTALL_INCLUDEDIR}")

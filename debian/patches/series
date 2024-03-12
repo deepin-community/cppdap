@@ -1,0 +1,5 @@
+0001-Do-not-force-old-CXX-standard.patch
+0002-Do-not-check-for-googletest-Git-submodule.patch
+0003-Export-jsoncpp-link.patch
+0004-Link-against-libatomic.patch
+0005-Link-against-pthreads-on-GNU-Hurd.patch

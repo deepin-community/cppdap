@@ -1,0 +1,47 @@
+#!/bin/bash
+set -e
+
+CPPDAP_SRC_DIR=${PWD}/src
+CPPDAP_GOOGLETEST_DIR=/usr/src/googletest
+
+cat > "${AUTOPKGTEST_TMP}/CMakeLists.txt" << EOF
+cmake_minimum_required(VERSION 3.13)
+project(cppdap_autopkgtest)
+
+find_package(cppdap REQUIRED)
+
+set(DAP_TEST_LIST
+    ${CPPDAP_SRC_DIR}/any_test.cpp
+    ${CPPDAP_SRC_DIR}/chan_test.cpp
+    ${CPPDAP_SRC_DIR}/content_stream_test.cpp
+    ${CPPDAP_SRC_DIR}/dap_test.cpp
+    ${CPPDAP_SRC_DIR}/json_serializer_test.cpp
+    ${CPPDAP_SRC_DIR}/network_test.cpp
+    ${CPPDAP_SRC_DIR}/optional_test.cpp
+    ${CPPDAP_SRC_DIR}/rwmutex_test.cpp
+    ${CPPDAP_SRC_DIR}/session_test.cpp
+    ${CPPDAP_SRC_DIR}/socket_test.cpp
+    ${CPPDAP_SRC_DIR}/traits_test.cpp
+    ${CPPDAP_SRC_DIR}/typeinfo_test.cpp
+    ${CPPDAP_SRC_DIR}/variant_test.cpp
+    ${CPPDAP_GOOGLETEST_DIR}/googletest/src/gtest-all.cc
+)
+
+set(DAP_TEST_INCLUDE_DIR
+    ${CPPDAP_GOOGLETEST_DIR}/googlemock/include/
+    ${CPPDAP_GOOGLETEST_DIR}/googletest/
+    ${CPPDAP_GOOGLETEST_DIR}/googletest/include/
+)
+
+add_executable(cppdap-unittests \${DAP_TEST_LIST})
+target_compile_definitions(cppdap-unittests PRIVATE CPPDAP_JSON_JSONCPP=1)
+target_include_directories(cppdap-unittests PRIVATE \${DAP_TEST_INCLUDE_DIR})
+target_link_libraries(cppdap-unittests PRIVATE cppdap::cppdap JsonCpp::JsonCpp)
+EOF
+
+cd "$AUTOPKGTEST_TMP"
+
+cmake . -DCMAKE_CXX_FLAGS=-Wno-psabi
+cmake --build . --verbose
+./cppdap-unittests
+

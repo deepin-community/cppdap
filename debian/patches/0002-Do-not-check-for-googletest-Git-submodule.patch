@@ -1,0 +1,31 @@
+From: =?utf-8?q?Timo_R=C3=B6hling?= <roehling@debian.org>
+Date: Sun, 2 Jul 2023 21:17:34 +0200
+Subject: Do not check for googletest Git submodule
+
+Forwarded: not-needed
+---
+ CMakeLists.txt | 11 -----------
+ 1 file changed, 11 deletions(-)
+
+diff --git a/CMakeLists.txt b/CMakeLists.txt
+index fb31fd7..2e22cf9 100644
+--- a/CMakeLists.txt
++++ b/CMakeLists.txt
+@@ -54,17 +54,6 @@ set_if_not_defined(CPPDAP_THIRD_PARTY_DIR ${CMAKE_CURRENT_SOURCE_DIR}/third_part
+ set_if_not_defined(CPPDAP_JSON_DIR        ${CPPDAP_THIRD_PARTY_DIR}/json)
+ set_if_not_defined(CPPDAP_GOOGLETEST_DIR  ${CPPDAP_THIRD_PARTY_DIR}/googletest)
+ 
+-###########################################################
+-# Submodules
+-###########################################################
+-if(CPPDAP_BUILD_TESTS)
+-    if(NOT EXISTS ${CPPDAP_GOOGLETEST_DIR}/.git)
+-        message(WARNING "third_party/googletest submodule missing.")
+-        message(WARNING "Run: `git submodule update --init` to build tests.")
+-        set(CPPDAP_BUILD_TESTS OFF)
+-    endif()
+-endif(CPPDAP_BUILD_TESTS)
+-
+ ###########################################################
+ # JSON library
+ ###########################################################

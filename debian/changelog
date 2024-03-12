@@ -1,5 +1,24 @@
-template-repository (1.0-1) unstable; urgency=medium
+cppdap (1.58.0a-4) unstable; urgency=medium
 
-  * Initial release
+  [ Pino Toscano ]
+  * Link against pthreads on GNU/Hurd
 
- -- Tsic404 <liuheng@deepin.org>  Sat, 28 Jan 2023 13:46:49 +0800
+ -- Timo Röhling <roehling@debian.org>  Thu, 13 Jul 2023 09:52:26 +0200
+
+cppdap (1.58.0a-3) unstable; urgency=medium
+
+  * Add -Wno-psabi in autopkgtest build to suppress stderr note
+
+ -- Timo Röhling <roehling@debian.org>  Wed, 12 Jul 2023 14:17:23 +0200
+
+cppdap (1.58.0a-2) unstable; urgency=medium
+
+  * Link against libatomic
+
+ -- Timo Röhling <roehling@debian.org>  Mon, 10 Jul 2023 20:19:29 +0200
+
+cppdap (1.58.0a-1) unstable; urgency=medium
+
+  * Initial release. (Closes: #1040176)
+
+ -- Timo Röhling <roehling@debian.org>  Sun, 02 Jul 2023 23:08:36 +0200
